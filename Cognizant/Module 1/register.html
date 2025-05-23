@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration - Local Community Event Portal</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-calendar-event me-2"></i>
+                Community Events
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="register.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feedback.html">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="video.html">Video</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-success text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-3 fw-bold mb-3">Event Registration</h1>
+                    <p class="lead">Join our amazing community events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="mb-0"><i class="bi bi-person-plus me-2"></i>Registration Form</h4>
+                        </div>
+                        <div class="card-body p-5">
+                            <form id="registrationForm" novalidate>
+                                <div class="row g-3">
+                                    <!-- Name Field -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="fullName" 
+                                                   placeholder="Full Name" required autofocus>
+                                            <label for="fullName">Full Name *</label>
+                                            <div class="invalid-feedback">
+                                                Please provide your full name.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Email Field -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" 
+                                                   placeholder="Email Address" required>
+                                            <label for="email">Email Address *</label>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid email address.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Phone Field -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="tel" class="form-control" id="phone" 
+                                                   placeholder="Phone Number" required
+                                                   onblur="validatePhone(this)">
+                                            <label for="phone">Phone Number *</label>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid phone number (10 digits).
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Event Date -->
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="eventDate" required>
+                                            <label for="eventDate">Preferred Event Date *</label>
+                                            <div class="invalid-feedback">
+                                                Please select an event date.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Event Type Selection -->
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold">Event Type *</label>
+                                        <select class="form-select form-select-lg" id="eventType" required
+                                                onchange="updateEventFee()">
+                                            <option value="">Choose event type...</option>
+                                            <option value="workshop" data-fee="25">Workshop ($25)</option>
+                                            <option value="festival" data-fee="15">Festival ($15)</option>
+                                            <option value="meetup" data-fee="0">Meetup (Free)</option>
+                                            <option value="charity" data-fee="10">Charity Event ($10)</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select an event type.
+                                        </div>
+                                    </div>
+
+                                    <!-- Event Fee Display -->
+                                    <div class="col-12">
+                                        <div class="alert alert-info d-none" id="feeDisplay">
+                                            <i class="bi bi-info-circle me-2"></i>
+                                            <strong>Event Fee: $<span id="feeAmount">0</span></strong>
+                                        </div>
+                                    </div>
+
+                                    <!-- Age Group -->
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold">Age Group</label>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="ageGroup" 
+                                                           id="age18" value="18-25">
+                                                    <label class="form-check-label" for="age18">18-25</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="ageGroup" 
+                                                           id="age26" value="26-35">
+                                                    <label class="form-check-label" for="age26">26-35</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="ageGroup" 
+                                                           id="age36" value="36-50">
+                                                    <label class="form-check-label" for="age36">36-50</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="ageGroup" 
+                                                           id="age50" value="50+">
+                                                    <label class="form-check-label" for="age50">50+</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Special Requirements -->
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="specialRequirements" 
+                                                      placeholder="Special Requirements" style="height: 120px"
+                                                      onkeyup="trackTextareaInput(this)"></textarea>
+                                            <label for="specialRequirements">Special Requirements or Comments</label>
+                                        </div>
+                                        <div class="form-text">
+                                            Characters typed: <span id="charCount">0</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Newsletter Subscription -->
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="newsletter">
+                                            <label class="form-check-label" for="newsletter">
+                                                Subscribe to our newsletter for event updates
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Emergency Contact -->
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-person-exclamation"></i></span>
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="emergencyContact" 
+                                                       placeholder="Emergency Contact">
+                                                <label for="emergencyContact">Emergency Contact Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                            <div class="form-floating">
+                                                <input type="tel" class="form-control" id="emergencyPhone" 
+                                                       placeholder="Emergency Phone">
+                                                <label for="emergencyPhone">Emergency Phone Number</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-success btn-lg px-5"
+                                                onclick="confirmRegistration(event)">
+                                            <i class="bi bi-check-circle me-2"></i>
+                                            Register Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- Registration Confirmation Output -->
+                            <output id="registrationOutput" class="d-none mt-4">
+                                <div class="alert alert-success">
+                                    <h5><i class="bi bi-check-circle me-2"></i>Registration Successful!</h5>
+                                    <p class="mb-0">Thank you for registering. You will receive a confirmation email shortly.</p>
+                                </div>
+                            </output>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Registration Options -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h3>Quick Registration</h3>
+                    <p class="text-muted">Register for popular events with one click</p>
+                </div>
+            </div>
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-3">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-tools text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h6>Weekend Workshop</h6>
+                            <button class="btn btn-outline-primary btn-sm" onclick="quickRegister('workshop')">
+                                Quick Register
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-music-note text-success mb-3" style="font-size: 2rem;"></i>
+                            <h6>Summer Festival</h6>
+                            <button class="btn btn-outline-success btn-sm" onclick="quickRegister('festival')">
+                                Quick Register
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-people text-warning mb-3" style="font-size: 2rem;"></i>
+                            <h6>Networking Meetup</h6>
+                            <button class="btn btn-outline-warning btn-sm" onclick="quickRegister('meetup')">
+                                Quick Register
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
+    
+    <script>
+        // Load saved event type preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedEventType = localStorage.getItem('preferredEventType');
+            if (savedEventType) {
+                document.getElementById('eventType').value = savedEventType;
+                updateEventFee();
+            }
+        });
+
+        // Set minimum date to today
+        document.getElementById('eventDate').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>

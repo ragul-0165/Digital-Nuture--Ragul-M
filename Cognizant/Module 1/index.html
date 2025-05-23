@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Internal CSS for body background -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+    </style>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <i class="bi bi-calendar-event me-2"></i>
+                Community Events
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feedback.html">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="video.html">Video</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Banner -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100 pt-5">
+                <div class="col-lg-6">
+                    <div id="welcomeBanner" class="text-white">
+                        <h1 class="display-1 fw-bold mb-4" style="color: #FFD700;">Welcome to Our Community</h1>
+                        <p class="lead mb-4">
+                            Discover amazing <span class="highlight">local events</span> happening in your neighborhood. 
+                            Connect with your community and create lasting memories.
+                        </p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="events.html" class="btn btn-primary btn-lg px-4">
+                                <i class="bi bi-calendar-check me-2"></i>Browse Events
+                            </a>
+                            <button id="getLocationBtn" class="btn btn-outline-light btn-lg px-4">
+                                <i class="bi bi-geo-alt me-2"></i>Find Nearby
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="https://pixabay.com/get/g9e983a358bf3b8604532d7c717c7db4795e221a5136065da2b7e928bda6911e37877e6ff650784c24aa9682e21e33a2d4b0fa14686ecabf94bf2f1eaaf7e22ce_1280.jpg" 
+                             alt="Community gathering" class="img-fluid rounded-3 shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 fw-bold text-dark">Why Choose Our Platform?</h2>
+                    <p class="lead text-muted">Everything you need to connect with your local community</p>
+                </div>
+            </div>
+            
+            <!-- Bootstrap Grid System: 3 columns on desktop, 2 on tablet, stacked on mobile -->
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="bi bi-people-fill text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Connect Locally</h5>
+                            <p class="card-text text-muted">
+                                Meet neighbors and build lasting relationships through shared interests and activities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="bi bi-calendar-event text-success" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Easy Registration</h5>
+                            <p class="card-text text-muted">
+                                Simple and quick event registration with instant confirmation and reminders.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="bi bi-geo-alt-fill text-warning" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Location-Based</h5>
+                            <p class="card-text text-muted">
+                                Find events near you using our smart location-based discovery system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Gallery -->
+    <section id="gallery" class="py-5 bg-gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 fw-bold text-white">Community Gallery</h2>
+                    <p class="lead text-white-50">Recent moments from our vibrant community events</p>
+                </div>
+            </div>
+            
+            <!-- Table layout with images (2 rows × 3 columns) -->
+            <div class="table-responsive">
+                <table class="table gallery-table">
+                    <tbody>
+                        <tr>
+                            <td class="gallery-cell">
+                                <img src="https://pixabay.com/get/gdf6efd203c670283dd7f76703838751d48db79cc25cd274798986c879c90f6a18dd97a2391cf44e500c4bc9548f533ba946ba27b236dfb8161aa0fddc63bc074_1280.jpg" 
+                                     alt="Festival celebration" class="gallery-img" ondblclick="enlargeImage(this)">
+                            </td>
+                            <td class="gallery-cell">
+                                <img src="https://pixabay.com/get/g26cff1acc39a35cf987591e08ffa0dadf0365cadebc4b7b0a926ac6076240a431f37f976b576b65a8933aa024d8ef7b667aea9a886b78c589a735552e36ecaa1_1280.jpg" 
+                                     alt="Community meetup" class="gallery-img" ondblclick="enlargeImage(this)">
+                            </td>
+                            <td class="gallery-cell">
+                                <img src="https://pixabay.com/get/g7ab184db4c687d31ad49e8c006248abedc3dc7919c862e552e08ba34df12eae0d08ad57d587d7974fd683e18d8ecc349dc594f0fb8d5dabcafa5e6124ba3b372_1280.jpg" 
+                                     alt="Outdoor networking" class="gallery-img" ondblclick="enlargeImage(this)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="gallery-cell">
+                                <img src="https://pixabay.com/get/g3e051a655fdbd226721c6f0688cee01247901b20ec57b5dbdba351c82c096b55d92baa8c02c007d1da29c1e664d51c87762c2a65c72e5e703098dca3e0f09c93_1280.jpg" 
+                                     alt="Local festival" class="gallery-img" ondblclick="enlargeImage(this)">
+                            </td>
+                            <td class="gallery-cell">
+                                <img src="https://pixabay.com/get/g4d44506f974aec11e52f6e86e3c4277a1b51bf402a105d353d97d3acf75562d987f3395bb57d1fdf5e11f2c9270c644f3b2f8225fd1c5d281fc60b3d0b6daf77_1280.jpg" 
+                                     alt="Community activities" class="gallery-img" ondblclick="enlargeImage(this)">
+                            </td>
+                            <td class="gallery-cell">
+                                <img src="https://pixabay.com/get/g016bac0182c7be77b2aeabe77e141d97fb314045b8269e8cd7987940f2fc17a448ce0859b38add71b74a4772fac5cf7ea39289103112b5c5436ac8201743e836_1280.jpg" 
+                                     alt="People connecting" class="gallery-img" ondblclick="enlargeImage(this)">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Display -->
+    <section id="location" class="py-3 bg-dark text-white d-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h5><i class="bi bi-geo-alt-fill me-2"></i>Your Location</h5>
+                    <p id="locationDisplay" class="mb-0"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixed Footer -->
+    <footer class="bg-dark text-white py-4 position-fixed bottom-0 w-100" style="z-index: 1020;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body p-0">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" 
+                            data-bs-dismiss="modal" style="z-index: 1050;"></button>
+                    <img id="modalImage" src="" alt="" class="img-fluid w-100 rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="main.js"></script>
+    
+    <!-- onbeforeunload warning -->
+    <script>
+        window.addEventListener('beforeunload', function(e) {
+            // Only warn if user hasn't interacted with the site
+            if (!localStorage.getItem('userEngaged')) {
+                e.preventDefault();
+                e.returnValue = 'Are you sure you want to leave? You might miss out on amazing community events!';
+            }
+        });
+        
+        // Mark user as engaged when they interact with the site
+        document.addEventListener('click', function() {
+            localStorage.setItem('userEngaged', 'true');
+        });
+    </script>
+</body>
+</html>
